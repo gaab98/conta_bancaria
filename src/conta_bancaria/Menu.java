@@ -3,10 +3,10 @@ package conta_bancaria;
 import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
+import conta_bancaria.model.ContaCorrente;
 
 public class Menu {
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		Scanner leia = new Scanner(System.in);
 
@@ -17,7 +17,7 @@ public class Menu {
 		Conta c1 = new Conta(1, 123, 1, "Isabella", 200000.00f);
 		c1.visualizar();
 		
-		Conta c2 = new Conta(1, 123, 2, "Thiago", 100000.00f);
+		Conta c2 = new Conta(2, 123, 2, "Thiago", 100000.00f);
 		c2.visualizar();
 		
 		/* Alteração do Saldo*/
@@ -44,6 +44,20 @@ public class Menu {
 		
 		c2.depositar(50000.00f);
 		c2.visualizar();
+		
+		/* Instanciar Objetos da Classe ContaCorrente*/
+		
+		ContaCorrente cc1 = new ContaCorrente(3, 789, 1, "Raquel", 200000.00f, 2000.00f);
+		cc1.visualizar();
+		
+		System.out.println("\nSacar R$ 203.000,00 da conta Cc1: " + (cc1.sacar(203000.00f) ? 
+				"Saque efetuado com sucesso! | Saldo: " + cc1.getSaldo() : "Saldo Insuficiente | Saldo: " + cc1.getSaldo()));
+		
+		System.out.println("\nSacar R$ 202.000,00 da conta Cc1: " + (cc1.sacar(202000.00f) ? 
+				"Saque efetuado com sucesso! | Saldo: " + cc1.getSaldo() : "Saldo Insuficiente | Saldo: " + cc1.getSaldo()));
+
+		cc1.depositar(2000.00f);
+		cc1.visualizar();
 	
 		while (true) {
 
