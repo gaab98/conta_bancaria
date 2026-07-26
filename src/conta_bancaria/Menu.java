@@ -8,6 +8,7 @@ import conta_bancaria.controller.ContaController;
 import conta_bancaria.model.Conta;
 import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.model.ContaPoupanca;
+import conta_bancaria.util.Cores;
 
 public class Menu {
 
@@ -24,7 +25,8 @@ public class Menu {
 
 		while (true) {
 
-			System.out.println("*****************************************************");
+			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
+					+ "*****************************************************");
 			System.out.println("                                                     ");
 			System.out.println("                BANCO DO BRAZIL COM Z                ");
 			System.out.println("                                                     ");
@@ -43,19 +45,19 @@ public class Menu {
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
 			System.out.println("Entre com a opção desejada:                          ");
-			System.out.println("                                                     ");
+			System.out.println("                                                     " + Cores.TEXT_RESET);
 
 			try {
 				opcao = leia.nextInt();
 				leia.nextLine();
 			} catch (InputMismatchException e) {
 				opcao = -1;
-				System.out.println("\nDigite um número inteiro entre 0 e 8");
+				System.out.println("\nDigite um número inteiro entre 0 e 9");
 				leia.nextLine();
 			}
 
 			if (opcao == 0) {
-				System.out.println("\nBanco do Brazil com Z - O seu Futuro começa aqui!");
+				System.out.println(Cores.TEXT_WHITE_BOLD + "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
 				sobre();
 				leia.close();
 				System.exit(0);
@@ -63,56 +65,56 @@ public class Menu {
 
 			switch (opcao) {
 			case 1:
-				System.out.println("Criar Conta\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Criar Conta\n\n");
 
 				cadastrarConta();
 
 				keyPress();
 				break;
 			case 2:
-				System.out.println("Listar todas as Contas\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Listar todas as Contas\n\n");
 
 				listarContas();
 
 				keyPress();
 				break;
 			case 3:
-				System.out.println("Consultar dados da Conta - por número\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Consultar dados da Conta - por número\n\n");
 				procurarContaPorNumero();
 				keyPress();
 				break;
 			case 4:
-				System.out.println("Atualizar dados da Conta\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Atualizar dados da Conta\n\n");
 				atualizarConta();
 				keyPress();
 				break;
 			case 5:
-				System.out.println("Apagar a Conta\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Apagar a Conta\n\n");
 				deletarConta();
 				keyPress();
 				break;
 			case 6:
-				System.out.println("Saque\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
 				sacar();
 				keyPress();
 				break;
 			case 7:
-				System.out.println("Depósito\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
 				depositar();
 				keyPress();
 				break;
 			case 8:
-				System.out.println("Transferência entre Contas\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
 				transferir();
 				keyPress();
 				break;
 			case 9:
-				System.out.println("Consulta por nome do titular\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Consulta por nome do titular\n\n");
 				listarPorTitular();
 				keyPress();
 				break;
 			default:
-				System.out.println("\nOpção Inválida!\n");
+				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n" + Cores.TEXT_RESET);
 				keyPress();
 				break;
 			}
@@ -128,7 +130,7 @@ public class Menu {
 	}
 
 	public static void keyPress() {
-		System.out.println("\n\nPressione Enter para continuar...");
+		System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para continuar...");
 		leia.nextLine();
 	}
 
@@ -175,7 +177,7 @@ public class Menu {
 			contaController.cadastrar(
 					new ContaPoupanca(contaController.gerarNumero(), agencia, tipo, titular, saldo, aniversario));
 		}
-		default -> System.out.println("Tipo de conta inválida!");
+		default -> System.out.println(Cores.TEXT_RED + "Tipo de conta inválida!" + Cores.TEXT_RESET);
 		}
 
 	}
@@ -282,7 +284,7 @@ public class Menu {
 					
 					contaController.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
 				}
-				default -> System.out.println("Tipo da conta é inválido!");
+				default -> System.out.println(Cores.TEXT_RED + "Tipo da conta é inválido!" + Cores.TEXT_RESET);
 			}
 
 		} else {
